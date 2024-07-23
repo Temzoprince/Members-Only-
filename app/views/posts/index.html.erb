@@ -1,0 +1,24 @@
+<h1>Show all posts</h1>
+<% if user_signed_in? %>
+    <p>Add more posts?<p>
+    <%= link_to "Create a new post", new_post_path %>
+    <ul>
+        <% @posts.each do |post| %>
+            <li>
+            <%= post.title %>
+            -----
+            <%= post.user.email %>
+            </li>
+        <% end %>
+    </ul>
+    <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+    <% else %>
+    <p>You need to be signed in to see who made each post<p>
+    <ul>
+        <% @posts.each do |post| %>
+            <li>
+            <%= post.title %>
+            </li>
+        <% end %>
+    </ul>
+<% end %>
